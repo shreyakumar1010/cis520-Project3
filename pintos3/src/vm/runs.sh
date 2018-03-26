@@ -12,7 +12,7 @@ cd ../examples/
 make
 
 echo Entering directory /userprog ...
-cd ../userprog/
+cd ../vm/
 make
 # Stop for the user to press the enter key
 #read -rp 'Press enter to continue...' secondyn </dev/tty 
