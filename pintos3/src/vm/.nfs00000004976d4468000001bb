@@ -21,7 +21,7 @@ echo Entering directory /userprog/build ...
 cd build
 pintos-mkdisk filesys.dsk --filesys-size=2;
 pintos -f -q;
-#pintos -p ../../examples/echo -a echo -- -q;
+pintos -p ../../examples/echo -a echo -- -q;
 #pintos -p ../../examples/echo -a cat -- -q;
 #pintos -p ../../examples/echo -a halt -- -q;
 #pintos -p ../../examples/echo -a lib -- -q;
@@ -30,7 +30,7 @@ pintos -f -q;
 #pintos -p ../../examples/echo -a shell -- -q;
 #pintos -p ../../examples/echo -a bubsort -- -q;
 #pintos -p ../../examples/echo -a cmp -- -q;
-#pintos -q run 'echo This is userspace!';
+pintos -q run 'echo This is userspace!';
 
 #cd build
 make check
