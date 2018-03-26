@@ -12,19 +12,16 @@ cd ../examples/
 make
 
 echo Entering directory /userprog ...
-cd ../userprog/
-
+cd ../vm/
+make
 # Stop for the user to press the enter key
 #read -rp 'Press enter to continue...' secondyn </dev/tty 
 
-echo Entering directory /userprog/build ...
+#echo Entering directory /userprog/build ...
 cd build
 pintos-mkdisk filesys.dsk --filesys-size=2;
 pintos -f -q;
 
-cd ..
-cd ../vm/
-make
 #pintos -p ../../examples/echo -a echo -- -q;
 #pintos -p ../../examples/echo -a cat -- -q;
 #pintos -p ../../examples/echo -a halt -- -q;
