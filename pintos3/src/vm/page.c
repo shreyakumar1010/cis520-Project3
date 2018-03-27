@@ -150,13 +150,23 @@ page_out (struct page *p)
      dirty bit, to prevent a race with the process dirtying the
      page. */
 
-/* add code here */
+/* add code here *///ADDED CODE
+   pagedir_clear_page(p->thread->pagedir, (void *) p->addr);
 
-  /* Has the frame been modified? */
+  /* Has the frame been modified? *///ADDED CODE
+   bool isDirty = pagedir_is_dirty (p->thread->pagedir, (const void *) p->addr);
 
-/* add code here */
+/* add code here */ 
+    
+   
+   
 
-  /* Write frame contents to disk if necessary. */
+  /* Write frame contents to disk if necessary. */ //ADDED CODE
+   
+   if (isDirty)
+ {
+   ok = swap_out(p);
+ }
 
 /* add code here */
 
