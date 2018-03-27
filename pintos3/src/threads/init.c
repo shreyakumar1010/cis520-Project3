@@ -116,8 +116,8 @@ main (void)
 #ifdef USERPROG
   exception_init ();
   syscall_init ();
-   vm_frame_init ();
-   vm_page_init ();
+   frame_init ();
+   page_init ();
    
 #endif
 
@@ -135,7 +135,7 @@ main (void)
    
    #ifdef VM
    locate_block_devices ();
-   vm_swap_init ();
+   swap_init ();
    #endif
 
   frame_init ();
