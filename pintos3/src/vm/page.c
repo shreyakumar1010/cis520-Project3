@@ -50,7 +50,12 @@ page_for_addr (const void *address)
       if (e != NULL)
         return hash_entry (e, struct page, hash_elem);
 
-      /* No page.  Expand stack? */
+      /* No page.  Expand stack? */ //ADDED CODE HERE FIX STILL
+     
+     if ((p.addr > PHYS_BASE - STACK_MAX) && ((void *)thread_current()->user_esp - 32 < address))
+     {
+        return page_allocate (p.addr, false);
+      }
 
 /* add code */
 
