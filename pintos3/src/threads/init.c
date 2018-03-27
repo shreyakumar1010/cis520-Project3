@@ -117,7 +117,7 @@ main (void)
   exception_init ();
   syscall_init ();
    frame_init ();
-   page_init ();
+   //page_init ();
    
 #endif
 
