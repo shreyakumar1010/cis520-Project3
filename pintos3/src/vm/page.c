@@ -154,24 +154,39 @@ page_out (struct page *p)
    pagedir_clear_page(p->thread->pagedir, (void *) p->addr);
 
   /* Has the frame been modified? *///ADDED CODE
-   bool isDirty = pagedir_is_dirty (p->thread->pagedir, (const void *) p->addr);
+    dirty = pagedir_is_dirty (p->thread->pagedir, (const void *) p->addr);
+ 
+   if(!dirty)
+  {
+    ok = true;
+  }
 
-/* add code here */ 
-    
-   
-   
+  if(p->file == NULL)
+  {
+    ok = swap_out(p);
+  }
+  else
+  {
+    if (dirty)
+    {
+      if(p->private)
+      {
+        ok = swap_out(p);
+      }
+      else
+      {
+        ok = file_write_at(p->file, (const void *) p->frame->base, p->file_bytes, p->file_offset);
+      }
+    }
+  }
 
-  /* Write frame contents to disk if necessary. */ //ADDED CODE
-   
-   if (isDirty)
- {
-   ok = swap_out(p);
- }
-
-/* add code here */
-
+  if(ok)
+  {
+    p->frame = NULL;
+  }
   return ok;
 }
+
 
 /* Returns true if page P's data has been accessed recently,
    false otherwise.
