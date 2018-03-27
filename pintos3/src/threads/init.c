@@ -39,6 +39,7 @@
 #endif
 #include "vm/frame.h"
 #include "vm/swap.h"
+#include "vm/page.h"
 
 /* Page directory with kernel mappings only. */
 uint32_t *init_page_dir;
@@ -115,6 +116,9 @@ main (void)
 #ifdef USERPROG
   exception_init ();
   syscall_init ();
+   vm_frame_init ();
+   vm_page_init ();
+   
 #endif
 
   /* Start thread scheduler and enable interrupts. */
@@ -128,6 +132,11 @@ main (void)
   locate_block_devices ();
   filesys_init (format_filesys);
 #endif
+   
+   #ifdef VM
+   locate_block_devices ();
+   vm_swap_init ();
+   #endif
 
   frame_init ();
   swap_init ();
